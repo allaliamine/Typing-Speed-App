@@ -4,12 +4,7 @@ import java.util.*;
 
 public class TextGenerate {
 
-    public static final int PARAGRAPH_MIN = 50;
-    public static final int PARAGRAPH_MAX = 100;
-    public static final int SENTENCE_MIN = 10;
-    public static final int SENTENCE_MAX = 20;
-
-    public List<String> words = new ArrayList<>(Arrays.asList(
+    public static List<String> words = new ArrayList<>(Arrays.asList(
             "abandon", "ability", "able", "about", "above", "absent", "absorb", "abstract",
             "abuse", "academy", "accept", "access", "accident", "account", "achieve", "acquire",
             "across", "act", "action", "active", "actor", "actress", "actual", "adapt",
@@ -77,8 +72,7 @@ public class TextGenerate {
     ));
 
 
-
-    public String generateText(int minWords, int maxWords){
+    public static String generateText(int minWords, int maxWords){
 
         int numberOfwords = generateNumberInRange(minWords,maxWords);
 
@@ -90,25 +84,45 @@ public class TextGenerate {
 
             do{
                 index = generateNumberInRange(0,300);
-            }while(!selectedWords.contains(index));
+            }while(selectedWords.contains(index));
 
             selectedWords.add(index);
             sentence.append(words.get(index)).append(" ");
         }
 
+        sentence.append(".");
+        return String.valueOf(sentence).trim();
+    }
+
+    public static String generateText(int number){
+
+        int numberOfwords = number;
+
+        StringBuilder sentence = new StringBuilder();
+        Set<Integer> selectedWords = new HashSet<>();
+
+        for(int i = 1 ; i <= numberOfwords ; i++){
+            int index;
+
+            do{
+                index = generateNumberInRange(0,300);
+            }while(selectedWords.contains(index));
+
+            selectedWords.add(index);
+            sentence.append(words.get(index)).append(" ");
+        }
+
+        sentence.append(".");
         return String.valueOf(sentence).trim();
     }
 
 
-
-    public int generateNumberInRange(int min, int max){
+    public static int generateNumberInRange(int min, int max){
         return min + (int)(Math.random()*(max+1 - min));
     }
 
-
     public static void main(String[] args) {
-        TextGenerate txt = new TextGenerate();
-        String sentence = txt.generateText(SENTENCE_MIN,SENTENCE_MAX);
-        System.out.printf(sentence);
+        System.out.println(generateText(10));
     }
+
 }

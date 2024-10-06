@@ -8,6 +8,7 @@ import java.awt.*;
 import static org.app.AppGUI.buttonDimension;
 
 public class ChoicesGUI extends JFrame {
+
     private JTextArea customTextArea;
     private JButton startButton;
 
@@ -34,12 +35,8 @@ public class ChoicesGUI extends JFrame {
         paragraphButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         customButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        sentenceButton.addActionListener(e -> {
-            System.out.println("Sentence selected.");
-        });
-        paragraphButton.addActionListener(e -> {
-            System.out.println("Paragraph selected.");
-        });
+        sentenceButton.addActionListener(e -> new TestGUI(-1));
+        paragraphButton.addActionListener(e -> new TestGUI(-2));
         customButton.addActionListener(e -> CustomTextSelect());
 
         JPanel buttonPanel = new JPanel();
@@ -116,7 +113,7 @@ public class ChoicesGUI extends JFrame {
                     showErrorDialog("Value must be positif and below 300");
                 }else{
                     customTextArea.setEditable(false);
-                    System.out.println("Valid value: " + wantedValue);
+                    new TestGUI(wantedValue);
                 }
             }catch(NumberFormatException e){
                 showErrorDialog("Value must be an integer");
