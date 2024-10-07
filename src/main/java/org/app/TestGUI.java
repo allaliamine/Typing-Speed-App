@@ -157,22 +157,24 @@ public class TestGUI extends JFrame {
         String userInput = userInputArea.getText();
         StringBuilder styledText = new StringBuilder("<html><body>");
 
-        boolean missmatched = false;
+        correctTypedChars = 0;
+        boolean missMatched = false;
 
         for (int i = 0; i < generatedText.length() ; i++) {
 
             if (i < userInput.length()) {
                 char userChar = userInput.charAt(i);
                 char originalChar = generatedText.charAt(i);
+
                 if (userChar == originalChar) {
                     styledText.append("<span style='color: black; opacity: 1;  font-size: 12px;'>" + originalChar + "</span>");
                     correctTypedChars++;
-                    missmatched = false;
+                    missMatched = false;
                 } else {
                     styledText.append("<span style='color: red; opacity: 1;  font-size: 12px;'>" + originalChar + "</span>");
-                    if (!missmatched) {
+                    if (!missMatched) {
                         numberOfErrors++;
-                        missmatched = true;
+                        missMatched = true;
                     }
                 }
             } else {
