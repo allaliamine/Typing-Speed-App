@@ -43,6 +43,8 @@ A Java-based application that tracks and evaluates your typing performance, incl
 
 - **`org.app`**: Contains the main application classes, including:
   - `Main`: The entry point of the application.
+  - `AppGui`: A class to display the home GUI.
+  - `ChoiceGUI`: A GUI class to display the different tracking methods **Sentence** or **Paragraph** or **custom** (where u choose the number of words that u want).
   - `ResultGUI`: A GUI class to display the results of the typing test.
 
 ## Contributing
