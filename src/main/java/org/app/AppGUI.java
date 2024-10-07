@@ -12,6 +12,7 @@ public class AppGUI extends JFrame {
         //window initializing
         setTitle("Speed Typing App");
         setSize(600, 400);
+        setLocation(340,100);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
