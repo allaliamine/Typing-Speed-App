@@ -1,11 +1,12 @@
 # Typing Tracker
 
-A Java-based application that tracks and evaluates your typing performance, including accuracy and words per minute (WPM) scores. The application provides feedback on your typing accuracy and allows you to retake the typing test.
+The Typing Tracker is a Java Swing application designed to help users improve their typing speed and accuracy. The application generates random text for users to type, tracks their performance, and provides feedback on their typing accuracy and speed after each test.
 
 ## Features
 
 - **Accuracy Calculation**: Displays the accuracy of your typed characters.
 - **WPM Calculation**: Measures your typing speed in words per minute.
+- **Real Time Tracking**: Mistakes are highlighted in red while the users are typing, giving them the opportunity to see where corrections are needed.
 - **User Interface**: A simple and user-friendly GUI that presents your results and allows you to retake the test or exit the application.
 - **Error Tracking**: Counts the number of incorrectly typed characters.
 
@@ -13,6 +14,12 @@ A Java-based application that tracks and evaluates your typing performance, incl
 
 - Java Development Kit (JDK) 8 or higher
 - An IDE for Java (e.g., IntelliJ IDEA, Eclipse, or NetBeans)
+
+## Technologies Used
+
+- Java Swing for the graphical user interface (GUI).
+- Java for backend logic and functionality.
+- HTML/CSS for text styling in the application.
 
 ## Installation
 
@@ -32,19 +39,27 @@ A Java-based application that tracks and evaluates your typing performance, incl
 
 ## Usage
 
-1. Follow the prompts in the application to start typing the displayed text.
-2. Once you finish typing, the results window will display:
+1. Run the main application by executing the `TestGUI` class.
+2. Choose **Start** to begin the typing test or **Exit** to close the application.
+3. Select one of the evaluation modes:
+   - **Sentence**: Text will vary between 10 to 20 words.
+   - **Paragraph**: Text will vary between 50 to 100 words.
+   - **Custom**: You choose the exact number of words you want.
+4. Type the original text displayed in the top panel into the bottom panel.
+5. The timer starts once you begin typing.
+6. Hit the period ('.') key to finish typing. If you type '.', the typing stops, and the application transitions to the results GUI.
+7. Once you finish typing, the results window will display:
    - Your accuracy percentage.
    - Your WPM score.
    - The number of correct and incorrect typed characters.
-3. Choose whether to retake the test or exit the application.
+8. Choose whether to retake the test or exit the application.
 
 ## Code Structure
 
 - **`org.app`**: Contains the main application classes, including:
   - `Main`: The entry point of the application.
   - `AppGui`: A class to display the home GUI.
-  - `ChoiceGUI`: A GUI class to display the different tracking modes _ **Sentence** _ or **Paragraph** or **Custom** (where u choose the number of words that u want).
+  - `ChoiceGUI`: A GUI class to display the different tracking modes -**Sentence**- or -**Paragraph**- or -**Custom**- -(where u choose the number of words that u want)-.
   - `ResultGUI`: A GUI class to display the results of the typing test.
 
 ## Contributing
