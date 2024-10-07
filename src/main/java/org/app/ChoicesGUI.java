@@ -35,8 +35,14 @@ public class ChoicesGUI extends JFrame {
         paragraphButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         customButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        sentenceButton.addActionListener(e -> new TestGUI(-1));
-        paragraphButton.addActionListener(e -> new TestGUI(-2));
+        sentenceButton.addActionListener(e -> {
+            new TestGUI(-1);
+            dispose();
+        });
+        paragraphButton.addActionListener(e -> {
+            new TestGUI(-2);
+            dispose();
+        });
         customButton.addActionListener(e -> CustomTextSelect());
 
         JPanel buttonPanel = new JPanel();
@@ -59,11 +65,6 @@ public class ChoicesGUI extends JFrame {
         add(buttonPanel);
 
         setVisible(true);
-    }
-
-
-    public static void main(String[] args) {
-        new ChoicesGUI();
     }
 
 
@@ -110,22 +111,27 @@ public class ChoicesGUI extends JFrame {
             try{
                 int wantedValue = Integer.parseInt(customTextArea.getText());
                 if(wantedValue > 300 || wantedValue <= 0){
-                    showErrorDialog("Value must be positif and below 300");
+                    showErrorDialog("Value must be positif and below 300", new JFrame());
                 }else{
                     customTextArea.setEditable(false);
                     new TestGUI(wantedValue);
+                    dispose();
                 }
             }catch(NumberFormatException e){
-                showErrorDialog("Value must be an integer");
+                showErrorDialog("Value must be an integer", new JFrame());
             }
 
         }else {
-            showErrorDialog("Value cannot be empty");
+            showErrorDialog("Value cannot be empty", new JFrame());
         }
 
     }
 
-    private void showErrorDialog(String message) {
-        JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
+    public static void showErrorDialog(String message, JFrame frame) {
+        JOptionPane.showMessageDialog(frame, message, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public static void showInfoDialog(String message, JFrame frame) {
+        JOptionPane.showMessageDialog(frame, message, "Info", JOptionPane.INFORMATION_MESSAGE);
     }
 }
