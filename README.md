@@ -2,7 +2,7 @@
 
 The Typing Speed Tracker is a Java Swing application designed to help users improve their typing speed and accuracy. The application generates random text for users to type, tracks their performance, and provides feedback on their typing accuracy and speed after each test.
 
-- If you don't need the code you can use the app by downloading the .dmg file provided above that will install the app as a desktop application for macOS. 
+- If you don't need the code you can use the app by downloading the .dmg file (will be) provided above that will install the app as a desktop application for macOS. 
 The Windows .exe file will be available soon.
 - Otherwise check the rest of the readme file for the usage and installation
 
