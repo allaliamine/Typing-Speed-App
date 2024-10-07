@@ -149,7 +149,8 @@ public class TestGUI extends JFrame {
 
 
     /**
-     * this method updates the text in the original text area
+     * this method updates the text in the original text area based on the user's input
+     * it compares the user input with the generated text char by char
      * if the input matches the char at the same position text becomes black
      * else it becomes red (unmatched char at the same position)
      */
@@ -157,8 +158,8 @@ public class TestGUI extends JFrame {
         String userInput = userInputArea.getText();
         StringBuilder styledText = new StringBuilder("<html><body>");
 
-        correctTypedChars = 0;
-        boolean missMatched = false;
+        correctTypedChars = 0; // this variable is initialized each time so we don't exceed the original number of chars if they are all correct
+        boolean missMatched = false; //to capture every missMatch just one time
 
         for (int i = 0; i < generatedText.length() ; i++) {
 
@@ -168,8 +169,8 @@ public class TestGUI extends JFrame {
 
                 if (userChar == originalChar) {
                     styledText.append("<span style='color: black; opacity: 1;  font-size: 12px;'>" + originalChar + "</span>");
-                    correctTypedChars++;
-                    missMatched = false;
+                    correctTypedChars++; //if the char is correct we increment
+                    missMatched = false; //and we set the missMatch to false
                 } else {
                     styledText.append("<span style='color: red; opacity: 1;  font-size: 12px;'>" + originalChar + "</span>");
                     if (!missMatched) {

@@ -79,12 +79,22 @@ public class ResultGUI extends JFrame {
         setVisible(true);
     }
 
+
+    /**
+     * this method returns the accuracy of the typed words
+     * @return accuracy
+     */
     public double calculateAccuracy() {
         int totalChars = generatedText.length();
         double accuracy = (double) correctTypedChars / totalChars * 100;
         return accuracy;
     }
 
+
+    /**
+     * this method calculates the average word typed per minute
+     * @return WPM
+     */
     public double calculateWPM() {
         double wordPerMinute = 60 * numberOfTypedWords / timeTaken;
         return wordPerMinute;
