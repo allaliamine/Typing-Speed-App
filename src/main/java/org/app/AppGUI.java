@@ -16,8 +16,7 @@ public class AppGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
-
-
+        //adding label
         JLabel welcomeLabel = new JLabel("Welcome to Speed Typing App!");
         welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24));
         welcomeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -60,6 +59,9 @@ public class AppGUI extends JFrame {
     }
 
 
+    /**
+     * launch the choice GUI when clicking start
+     */
     public void startApp(){
         new ChoicesGUI();
         dispose();

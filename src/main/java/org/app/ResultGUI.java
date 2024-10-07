@@ -71,7 +71,10 @@ public class ResultGUI extends JFrame{
     }
 
 
-
+    /**
+     * this method returns the accuracy of the typed words
+     * @return accuracy
+     */
     public double calculateAccuracy() {
         int totalChars = generatedText.length();
         int correctChars = totalChars - numberOfErrors;
@@ -82,6 +85,10 @@ public class ResultGUI extends JFrame{
     }
 
 
+    /**
+     * this method calculates the average word typed per minute
+     * @return WPM
+     */
     public double calculateWPM(){
 
         int totalWords = generatedText.split("\\s+").length;

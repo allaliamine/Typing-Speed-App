@@ -28,6 +28,7 @@ public class TestGUI extends JFrame {
 
     public TestGUI(int wantedValue) {
 
+        //generating text based on the mode selected
         if(wantedValue > 0){
             generatedText = generateText(wantedValue);
         }
@@ -72,12 +73,12 @@ public class TestGUI extends JFrame {
         textPanel.add(new JScrollPane(originalTextArea));
         textPanel.add(new JScrollPane(userInputArea));
 
-        // Timer Label
+        // timer Label
         timerLabel = new JLabel("Time: 0.0 seconds");
         timerLabel.setFont(new Font("Arial", Font.BOLD, 16));
         timerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        // Adding components to the frame
+        // adding components to the frame
         add(textPanel, BorderLayout.CENTER);
         add(timerLabel, BorderLayout.SOUTH);
 
@@ -112,6 +113,7 @@ public class TestGUI extends JFrame {
      * this method is used to start and stop the timer.
      * the timer starts when the user starts to write,
      * and it stops when he writes a "."
+     * as well it launch the result window once the test is finished
      */
     private void timerStartAndStop() {
 
@@ -173,6 +175,10 @@ public class TestGUI extends JFrame {
         originalTextArea.setText(styledText.toString());
     }
 
+
+    /**
+     * this method generate the style of the text in the original area
+     */
     private String generatedTextStyle(int opacity) {
         return "<html><body><span style='color: rgba(0, 0, 0, 0.4); font-size: 12px;'>" + generatedText + "</span></body></html>";
     }

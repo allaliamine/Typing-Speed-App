@@ -69,6 +69,9 @@ public class ChoicesGUI extends JFrame {
     }
 
 
+    /**
+     * this method add a textArea and a start button when clicking custom button
+     */
     public void CustomTextSelect(){
 
         JLabel infoLabel = new JLabel("please select the number of words :");
@@ -100,11 +103,15 @@ public class ChoicesGUI extends JFrame {
 
 
         startButton.addActionListener(e->getValue());
+
         // repaint and revalidate to show the new components
         revalidate();
         repaint();
     }
 
+    /**
+     * this method gets the value typed if the user choose custom button
+     */
     public void getValue(){
         String typedValue = customTextArea.getText().trim();
 
@@ -128,10 +135,16 @@ public class ChoicesGUI extends JFrame {
 
     }
 
+    /*
+    show the error dialog
+     */
     public static void showErrorDialog(String message, JFrame frame) {
         JOptionPane.showMessageDialog(frame, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    /*
+    show info dialog
+     */
     public static void showInfoDialog(String message, JFrame frame) {
         JOptionPane.showMessageDialog(frame, message, "Info", JOptionPane.INFORMATION_MESSAGE);
     }
