@@ -17,6 +17,8 @@ public class TestGUI extends JFrame {
     private Timer timer;
     private long startTime;
 
+    private int numberOfErrors = 0;
+
     private String generatedText;
 
     public static final int PARAGRAPH_MIN = 50;
@@ -46,6 +48,7 @@ public class TestGUI extends JFrame {
 
         setTitle("Typing Tracker");
         setSize(600, 400);
+        setLocation(340,100);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
@@ -126,6 +129,8 @@ public class TestGUI extends JFrame {
             long timeSpent = System.currentTimeMillis() - startTime;
             double totalSeconds = timeSpent / 1000.0;
 
+            new ResultGUI(numberOfErrors, totalSeconds, generatedText);
+            dispose();
 
         }
     }
@@ -157,6 +162,7 @@ public class TestGUI extends JFrame {
                     styledText.append("<span style='color: black; opacity: 1;  font-size: 12px;'>" + originalChar + "</span>");
                 } else {
                     styledText.append("<span style='color: red; opacity: 1;  font-size: 12px;'>" + originalChar + "</span>");
+                    numberOfErrors++;
                 }
             } else {
                 styledText.append("<span style='color: rgba(0, 0, 0, 0.4);  font-size: 12px;'>" + generatedText.charAt(i) + "</span>");
@@ -170,6 +176,5 @@ public class TestGUI extends JFrame {
     private String generatedTextStyle(int opacity) {
         return "<html><body><span style='color: rgba(0, 0, 0, 0.4); font-size: 12px;'>" + generatedText + "</span></body></html>";
     }
-
 
 }
