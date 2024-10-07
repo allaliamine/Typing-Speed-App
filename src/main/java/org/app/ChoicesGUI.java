@@ -15,6 +15,7 @@ public class ChoicesGUI extends JFrame {
     public ChoicesGUI(){
         setTitle("Choice Window");
         setSize(600,400);
+        setLocation(340,100);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
