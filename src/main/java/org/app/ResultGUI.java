@@ -6,13 +6,18 @@ import java.awt.*;
 public class ResultGUI extends JFrame{
 
     private int numberOfErrors;
+    private int correctTypedChars;
     private String generatedText;
     private double timeTaken;
+    private int numberOfTypedWords;
 
-    public ResultGUI(int numberOfErrors, double timeTaken, String generatedText) {
+    public ResultGUI(int numberOfErrors, int correctTypedChars,double timeTaken, String generatedText, int numberOfTypedWords) {
         this.numberOfErrors = numberOfErrors;
+        this.correctTypedChars= correctTypedChars;
         this.timeTaken = timeTaken;
         this.generatedText = generatedText;
+        this.numberOfTypedWords = numberOfTypedWords;
+
 
 
         int accuracy = (int) calculateAccuracy();
@@ -36,6 +41,10 @@ public class ResultGUI extends JFrame{
         JLabel WPMLabel = new JLabel("Your WPM Score :  " + WPM );
         welcomeLabel.setFont(new Font("Arial", Font.BOLD, 18));
         welcomeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JLabel statisticLabel = new JLabel("(correct/incorrect typed characters) :  " + "("+correctTypedChars+","+numberOfErrors+")" );
+        statisticLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        statisticLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 
         JButton yesButton = new JButton("Yes");
@@ -63,6 +72,8 @@ public class ResultGUI extends JFrame{
         add(accuracyLabel);
         add(Box.createRigidArea(new Dimension(0,20)));
         add(WPMLabel);
+        add(Box.createRigidArea(new Dimension(0,20)));
+        add(statisticLabel);
         add(Box.createRigidArea(new Dimension(0,40)));
         add(buttonPanel);
 
@@ -76,10 +87,14 @@ public class ResultGUI extends JFrame{
      * @return accuracy
      */
     public double calculateAccuracy() {
+
         int totalChars = generatedText.length();
-        int correctChars = totalChars - numberOfErrors;
+        int correctChars =  correctTypedChars;
 
         double accuracy =  (double) correctChars / totalChars * 100;
+
+        System.out.println(totalChars);
+        System.out.println(numberOfErrors);
 
         return accuracy;
     }
@@ -93,7 +108,7 @@ public class ResultGUI extends JFrame{
 
         int totalWords = generatedText.split("\\s+").length;
 
-        double wordPerMinute = 60 * totalWords / timeTaken;
+        double wordPerMinute = 60 * numberOfTypedWords / timeTaken;
 
         return wordPerMinute;
 
@@ -101,7 +116,7 @@ public class ResultGUI extends JFrame{
 
 
     public static void main(String[] args) {
-        new ResultGUI(2,3,"test test");
+
     }
 
 }

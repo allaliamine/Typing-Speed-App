@@ -16,6 +16,8 @@ public class TestGUI extends JFrame {
     private JLabel timerLabel;
     private Timer timer;
     private long startTime;
+    private int numberOfTypedWords;
+    private int correctTypedChars = 0;
 
     private int numberOfErrors = 0;
 
@@ -34,10 +36,10 @@ public class TestGUI extends JFrame {
         }
         else if(wantedValue == -1){
             generatedText = generateText(SENTENCE_MIN, SENTENCE_MAX);
-            System.out.println(generatedText);
+            System.out.println(generatedText);//for debug only
         }else if (wantedValue == -2){
             generatedText = generateText(PARAGRAPH_MIN, PARAGRAPH_MAX);
-            System.out.println(generatedText);
+            System.out.println(generatedText);//for debug only
         }
 
 
@@ -131,9 +133,8 @@ public class TestGUI extends JFrame {
             long timeSpent = System.currentTimeMillis() - startTime;
             double totalSeconds = timeSpent / 1000.0;
 
-            new ResultGUI(numberOfErrors, totalSeconds, generatedText);
+            new ResultGUI(numberOfErrors, correctTypedChars,totalSeconds, generatedText, numberOfTypedWords);
             dispose();
-
         }
     }
 
@@ -156,15 +157,23 @@ public class TestGUI extends JFrame {
         String userInput = userInputArea.getText();
         StringBuilder styledText = new StringBuilder("<html><body>");
 
-        for (int i = 0; i < generatedText.length(); i++) {
+        boolean missmatched = false;
+
+        for (int i = 0; i < generatedText.length() ; i++) {
+
             if (i < userInput.length()) {
                 char userChar = userInput.charAt(i);
                 char originalChar = generatedText.charAt(i);
                 if (userChar == originalChar) {
                     styledText.append("<span style='color: black; opacity: 1;  font-size: 12px;'>" + originalChar + "</span>");
+                    correctTypedChars++;
+                    missmatched = false;
                 } else {
                     styledText.append("<span style='color: red; opacity: 1;  font-size: 12px;'>" + originalChar + "</span>");
-                    numberOfErrors++;
+                    if (!missmatched) {
+                        numberOfErrors++;
+                        missmatched = true;
+                    }
                 }
             } else {
                 styledText.append("<span style='color: rgba(0, 0, 0, 0.4);  font-size: 12px;'>" + generatedText.charAt(i) + "</span>");
@@ -173,6 +182,7 @@ public class TestGUI extends JFrame {
 
         styledText.append("</body></html>");
         originalTextArea.setText(styledText.toString());
+        numberOfTypedWords = (userInputArea.getText()).split("\\s+").length;
     }
 
 
