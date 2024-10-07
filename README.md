@@ -1,6 +1,6 @@
-# Typing Tracker
+# Typing Speed Tracker
 
-The Typing Tracker is a Java Swing application designed to help users improve their typing speed and accuracy. The application generates random text for users to type, tracks their performance, and provides feedback on their typing accuracy and speed after each test.
+The Typing Speed Tracker is a Java Swing application designed to help users improve their typing speed and accuracy. The application generates random text for users to type, tracks their performance, and provides feedback on their typing accuracy and speed after each test.
 
 ## Table of Contents
 
