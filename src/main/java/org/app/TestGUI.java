@@ -5,12 +5,13 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 
+import static org.app.ChoicesGUI.showInfoDialog;
 import static org.app.TextGenerate.generateText;
-
 
 public class TestGUI extends JFrame {
 
-    private JEditorPane originalTextPane;
+
+    private JEditorPane originalTextArea;
     private JEditorPane userInputArea;
     private JLabel timerLabel;
     private Timer timer;
@@ -24,6 +25,7 @@ public class TestGUI extends JFrame {
     public static final int SENTENCE_MAX = 20;
 
     public TestGUI(int wantedValue) {
+
         if(wantedValue > 0){
             generatedText = generateText(wantedValue);
         }
@@ -32,6 +34,7 @@ public class TestGUI extends JFrame {
             System.out.println(generatedText);
         }else if (wantedValue == -2){
             generatedText = generateText(PARAGRAPH_MIN, PARAGRAPH_MAX);
+            System.out.println(generatedText);
         }
 
 
@@ -46,19 +49,25 @@ public class TestGUI extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Original Text Pane
-        originalTextPane = new JEditorPane();
-        originalTextPane.setContentType("text/html");
-        originalTextPane.setText(generatedTextStyle(0));
-        originalTextPane.setEditable(false);
-        originalTextPane.setPreferredSize(new Dimension(600, 50));
+        // devide a panel by 2 for both original and input area
+        JPanel textPanel = new JPanel();
+        textPanel.setLayout(new GridLayout(2, 1));
 
-        // User Input Pane
+        // original text area
+        originalTextArea = new JEditorPane();
+        originalTextArea.setContentType("text/html");
+        originalTextArea.setText(generatedTextStyle(0));
+        originalTextArea.setEditable(false);
+
+        // user input area
         userInputArea = new JEditorPane();
         userInputArea.setContentType("text/plain");
         userInputArea.setEditable(true);
-        userInputArea.setPreferredSize(new Dimension(600, 200));
         userInputArea.getDocument().addDocumentListener(new InputListener());
+
+
+        textPanel.add(new JScrollPane(originalTextArea));
+        textPanel.add(new JScrollPane(userInputArea));
 
         // Timer Label
         timerLabel = new JLabel("Time: 0.0 seconds");
@@ -66,14 +75,15 @@ public class TestGUI extends JFrame {
         timerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Adding components to the frame
-        add(originalTextPane, BorderLayout.NORTH);
-        add(new JScrollPane(userInputArea), BorderLayout.CENTER);
+        add(textPanel, BorderLayout.CENTER);
         add(timerLabel, BorderLayout.SOUTH);
 
         // Timer initialization
         timer = new Timer(100, e -> updateTimer());
 
         setVisible(true);
+
+        showInfoDialog("the test will start once you start typing \nthe test will stop once you type a dot '.'", new JFrame());
     }
 
     private class InputListener implements DocumentListener {
@@ -103,6 +113,7 @@ public class TestGUI extends JFrame {
     private void timerStartAndStop() {
 
         String userInput = userInputArea.getText();
+
         if (userInput.length() == 1 && !timer.isRunning()) {
             startTime = System.currentTimeMillis();
             timer.start();
@@ -111,6 +122,11 @@ public class TestGUI extends JFrame {
         if (userInput.endsWith(".")) {
             timer.stop();
             userInputArea.setEditable(false);
+
+            long timeSpent = System.currentTimeMillis() - startTime;
+            double totalSeconds = timeSpent / 1000.0;
+
+
         }
     }
 
@@ -124,6 +140,11 @@ public class TestGUI extends JFrame {
     }
 
 
+    /**
+     * this method updates the text in the original text area
+     * if the input matches the char at the same position text becomes black
+     * else it becomes red (unmatched char at the same position)
+     */
     private void updateText() {
         String userInput = userInputArea.getText();
         StringBuilder styledText = new StringBuilder("<html><body>");
@@ -133,25 +154,22 @@ public class TestGUI extends JFrame {
                 char userChar = userInput.charAt(i);
                 char originalChar = generatedText.charAt(i);
                 if (userChar == originalChar) {
-                    styledText.append("<span style='color: black; opacity: 1;'>" + originalChar + "</span>");
+                    styledText.append("<span style='color: black; opacity: 1;  font-size: 12px;'>" + originalChar + "</span>");
                 } else {
-                    styledText.append("<span style='color: red; opacity: 1;'>" + originalChar + "</span>");
+                    styledText.append("<span style='color: red; opacity: 1;  font-size: 12px;'>" + originalChar + "</span>");
                 }
             } else {
-                styledText.append("<span style='color: rgba(0, 0, 0, 0.4);'>" + generatedText.charAt(i) + "</span>");
+                styledText.append("<span style='color: rgba(0, 0, 0, 0.4);  font-size: 12px;'>" + generatedText.charAt(i) + "</span>");
             }
         }
 
         styledText.append("</body></html>");
-        originalTextPane.setText(styledText.toString());
+        originalTextArea.setText(styledText.toString());
     }
 
     private String generatedTextStyle(int opacity) {
-        return "<html><body><span style='color: rgba(0, 0, 0, 0.4); font-size: 24px;'>" + generatedText + "</span></body></html>";
+        return "<html><body><span style='color: rgba(0, 0, 0, 0.4); font-size: 12px;'>" + generatedText + "</span></body></html>";
     }
 
-    public static void main(String[] args) {
-        new TestGUI(1);
-    }
 
 }
