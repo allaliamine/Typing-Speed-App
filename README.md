@@ -8,11 +8,11 @@ The Typing Tracker is a Java Swing application designed to help users improve th
 - **WPM Calculation**: Measures your typing speed in words per minute.
 - **Real Time Tracking**: Mistakes are highlighted in red while the users are typing, giving them the opportunity to see where corrections are needed.
 - **User Interface**: A simple and user-friendly GUI that presents your results and allows you to retake the test or exit the application.
-- **Error Tracking**: Counts the number of incorrectly typed characters.
+- **Error Tracking**: Counts the number of incorrectly and correctly typed characters.
 
 ## Requirements
 
-- Java Development Kit (JDK) 8 or higher
+- Java Development Kit (JDK) 17 or higher
 - An IDE for Java (e.g., IntelliJ IDEA, Eclipse, or NetBeans)
 
 ## Technologies Used
@@ -59,13 +59,15 @@ The Typing Tracker is a Java Swing application designed to help users improve th
 - **`org.app`**: Contains the main application classes, including:
   - `Main`: The entry point of the application.
   - `AppGui`: A class to display the home GUI.
-  - `ChoiceGUI`: A GUI class to display the different tracking modes -**Sentence**- or -**Paragraph**- or -**Custom**- -(where u choose the number of words that u want)-.
+  - `ChoiceGUI`: A GUI class to display the different tracking modes **Sentence**, **Paragraph** or **Custom**.
+  - `TestGUI`: A GUI class where you start the typing test.
   - `ResultGUI`: A GUI class to display the results of the typing test.
 
 ## Contributing
 
 Contributions are welcome! If you would like to improve the application, feel free to fork the repository and submit a pull request.
 
-## License
+## Version Information
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This is version 1.0 of the Typing Tracker application. Many additional functionalities will be added over time to enhance user experience and improve typing skills.
+
