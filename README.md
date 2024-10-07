@@ -12,6 +12,8 @@ The Typing Tracker is a Java Swing application designed to help users improve th
 - [Code Structure](#code-structure)
 - [Contributing](#contributing)
 - [Version Information](#version-information)
+- [Contacts](#contacts)
+
 
 ## Features
 
@@ -81,4 +83,10 @@ Contributions are welcome! If you would like to improve the application, feel fr
 ## Version Information
 
 This is version 1.0 of the Typing Tracker application. Many additional functionalities will be added over time to enhance user experience and improve typing skills.
+
+## Contacts
+
+For any feedback or inquiries, feel free to contact me at:
+[Allali Mohamed Amin](https://www.linkedin.com/in/m-amin-allali/)
+
 
