@@ -72,48 +72,31 @@ public class TextGenerate {
     ));
 
 
-    public static String generateText(int minWords, int maxWords){
-
-        int numberOfwords = generateNumberInRange(minWords,maxWords);
-
-        StringBuilder sentence = new StringBuilder();
-        Set<Integer> selectedWords = new HashSet<>();
-
-        for(int i = 1 ; i <= numberOfwords ; i++){
-            int index;
-
-            do{
-                index = generateNumberInRange(0,300);
-            }while(selectedWords.contains(index));
-
-            selectedWords.add(index);
-            sentence.append(words.get(index)).append(" ");
-        }
-
-        sentence.append(".");
-        return String.valueOf(sentence).trim();
+    public static String generateText(int minWords, int maxWords) {
+        int numberOfWords = generateNumberInRange(minWords, maxWords);
+        return generateRandomText(numberOfWords);
     }
 
-    public static String generateText(int number){
+    public static String generateText(int number) {
+        return generateRandomText(number);
+    }
+    public static String generateRandomText(int number){
 
-        int numberOfwords = number;
+        StringBuilder text = new StringBuilder();
+        Set<Integer> selectedWordsIndexes = new HashSet<>();
 
-        StringBuilder sentence = new StringBuilder();
-        Set<Integer> selectedWords = new HashSet<>();
-
-        for(int i = 1 ; i <= numberOfwords ; i++){
+        for(int i = 1 ; i <= number ; i++){
             int index;
 
             do{
                 index = generateNumberInRange(0,300);
-            }while(selectedWords.contains(index));
+            }while(selectedWordsIndexes.contains(index));
 
-            selectedWords.add(index);
-            sentence.append(words.get(index)).append(" ");
+            selectedWordsIndexes.add(index);
+            text.append(words.get(index)).append(" ");
         }
 
-        sentence.append(".");
-        return String.valueOf(sentence).trim();
+        return text.toString().trim()+".";
     }
 
 
@@ -121,6 +104,7 @@ public class TextGenerate {
         return min + (int)(Math.random()*(max+1 - min));
     }
 
+    // FOR DEBUG
     public static void main(String[] args) {
         System.out.println(generateText(10));
     }
