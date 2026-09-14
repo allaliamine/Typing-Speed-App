@@ -42,12 +42,12 @@ The Windows .exe file will be available soon.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/typing-tracker.git
+   git clone https://github.com/allaliamine/Typing-Speed-App
    ```
    
 2. Navigate to the project directory:
    ```bash
-   cd typing-tracker
+   cd Typing-Speed-App
    ```
 
 3. Open the project in your preferred IDE.
